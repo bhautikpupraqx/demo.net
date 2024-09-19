@@ -1,0 +1,39 @@
+﻿<UserAppAccess_Attribute>
+	<FirstName>Jeremy</FirstName>
+	<LastName>Coleman</LastName>
+	<UserId>604826</UserId>
+	<AppProfile RefId="">
+		<staffrecordId>604826</staffrecordId>
+		<FirstName>Jeremy</FirstName>
+		<LastName>Coleman</LastName>
+		<Phone></Phone>
+		<PrimaryOrg></PrimaryOrg>
+		<PrimaryOrgName></PrimaryOrgName>
+		<PrimaryRole></PrimaryRole>
+		<Title></Title>
+		<xdTouchDate></xdTouchDate>
+		<xdOrgId></xdOrgId>
+		<Application Id="33" Name="NOVA Registration System UID">
+			<Roles>
+				<Role Id="3" Name="Resolution Coordinator">
+					<Org Name="Grand Bend Middle School" TypeCode="02" Code="255901044" />
+				</Role>
+			</Roles>
+		</Application>
+		<Application Id="35" Name="Data Validation Dashboard">
+			<Roles>
+				<Role Id="0" Name="State">
+					<Org Name="PED" TypeCode="01" Code="255901" ParentOrgId="000" />
+				</Role>
+			</Roles>
+		</Application>
+		<Application Id="34" Name="NOVA Registration System Wizard">
+			<Roles>
+				<Role Id="Role1" Name="Basic Role">
+					<Org Name="Grand Bend ISD" TypeCode="01" Code="255901" />
+					<Org Name="Grand Bend High School" TypeCode="02" Code="255901001" />
+				</Role>
+			</Roles>
+		</Application>
+	</AppProfile>
+</UserAppAccess_Attribute>
