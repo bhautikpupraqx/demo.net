@@ -16,12 +16,14 @@ namespace NewMexicoAPI.Controllers
         public readonly ILogger _logger;
         private readonly ValidationErrorRepository _validationErrorRepository;
         private readonly DashBoardCategoriesRepository _dashBoardCategoriesRepository;
+        private readonly EmailNotificationRepository _emailNotificationRepository;
 
-        public LoginController(ILogger<LoginController> logger, ValidationErrorRepository validationErrorRepository, DashBoardCategoriesRepository dashBoardCategoriesRepository)
+        public LoginController(ILogger<LoginController> logger, ValidationErrorRepository validationErrorRepository, DashBoardCategoriesRepository dashBoardCategoriesRepository, EmailNotificationRepository emailNotificationRepository)
         {
             _logger = logger;
             _validationErrorRepository = validationErrorRepository;
             _dashBoardCategoriesRepository = dashBoardCategoriesRepository;
+            _emailNotificationRepository = emailNotificationRepository;
         }
 
         [HttpGet("AltLogin")]
@@ -96,9 +98,18 @@ namespace NewMexicoAPI.Controllers
                             TrackLoginsModel.LoginType = "Altlogin";
                             TrackLoginsModel.AccessProfile = "";
                          }
-                        var a = TrackLoginsModel;
-
-                        _dashBoardCategoriesRepository.Validation_TrackLogins(TrackLoginsModel);
+                        
+                       bool checkemail = _emailNotificationRepository.IsValidEmail(loggedInUserData.Email);
+                        if(checkemail == true)
+                        {
+                            _emailNotificationRepository.TrackEmail(loggedInUserData);
+                        }
+                        else
+                        {
+                            _logger.LogInformation("Email is not valid");
+                        }
+                        
+                        //_dashBoardCategoriesRepository.Validation_TrackLogins(TrackLoginsModel);
 
                         return Json(loggedInUserData);
                     }

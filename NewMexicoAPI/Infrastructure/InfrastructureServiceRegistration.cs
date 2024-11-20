@@ -13,6 +13,7 @@ namespace NewMexicoAPI.Infrastructure
             services.AddScoped<DashBoardCategoriesRepository>();
             services.AddScoped<DistrictHomeRepository>();
             services.AddScoped<SchoolHomeRepository>();
+            services.AddScoped<EmailNotificationRepository>();
             return services;
         }
     }

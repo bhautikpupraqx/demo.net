@@ -12,5 +12,6 @@
         public string Role { get; set; }
         public string Schools { get; set; }
         public string SchoolRefIds { get; set; }
+        public string Email { get; set; }
     }
 }
