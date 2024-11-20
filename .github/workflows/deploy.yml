@@ -1,4 +1,4 @@
-# github action to deploy munsonpickles api to azure
+# GitHub Action to build and publish a .NET API
 
 name: Auto Deploy Demo
 
@@ -9,14 +9,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Check out the repository
       - uses: actions/checkout@v3
+
+      # Step 2: Setup .NET Core environment
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
         
+      # Step 3: Restore dependencies
       - name: Install dependencies
         run: dotnet restore ./NewMexicoAPI/NewMexicoAPI.csproj
 
+      # Step 4: Build the project
       - name: Build
         run: dotnet build ./NewMexicoAPI/NewMexicoAPI.csproj --configuration Release --no-restore
+
+      # Step 5: Publish the project
+      - name: Publish
+        run: dotnet publish ./NewMexicoAPI/NewMexicoAPI.csproj --configuration Release --output ./publish
+
+      # Step 6: Upload the publish folder as an artifact
+      - name: Upload Publish Folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: publish-folder
+          path: ./publish/
