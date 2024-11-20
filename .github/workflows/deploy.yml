@@ -1,0 +1,22 @@
+# github action to deploy munsonpickles api to azure
+
+name: Auto Deploy Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+        
+      - name: Install dependencies
+        run: dotnet restore ./NewMexicoAPI/NewMexicoAPI.csproj
+
+      - name: Build
+        run: dotnet build ./NewMexicoAPI/NewMexicoAPI.csproj --configuration Release --no-restore
